@@ -19,22 +19,23 @@ class SubQuestionsNode:
                 
             # Prompt to generate detailed sub-questions
             prompt = f"""
-            You are an expert researcher focusing on company analysis to generate a report.
-            Your task is to generate 4 specific sub-questions that will provide a thorough understanding of the company: '{state['company']}'.
+            You are an expert clinical researcher focusing on treatment analysis, in relation to complex illness (eg Long Covid, ME/CFS, MCAS), in order to generate a report.
+            Your task is to generate 5 specific sub-questions that will provide a thorough understanding of the treatment: '{state['treatment_name']}'.
             
             ### Key Areas to Explore:
-            - **Company Background**: Include history, mission, headquarters location, CEO, and number of employees.
-            - **Products and Services**: Focus on main offerings, unique features, and target customer segments.
-            - **Market Position**: Address competitive standing, market reach, and industry impact.
-            - **Financials**: Seek recent funding, revenue milestones, financial performance, and growth indicators.
+            - **Description**: What is the intended purpose of the treatment in relation to the complex illness (eg Long Covid, ME/CFS, MCAS)?
+            - **Mechanism of action**: How it works, what affect does it have on the body, what are its intended benefits?
+            - **Efficacy**: What is the efficacy of the treatment?
+            - **Safety**: What is the safety of the treatment?
+            - **Adverse effects**: What are the adverse effects of the treatment?
 
-            Use the initial information provided from the company's website below to keep questions directly relevant to **{state['company']}**.
+            Use the initial information provided from the source website below to keep questions directly relevant to **{state['treatment_name']}**.
 
-            Official URL: {state['company_url']}
-            Initial Company Information:
+            Source URL: {state['source_url']}
+            Initial Treatment Information:
             {state["initial_documents"]}
             
-            Ensure questions are clear, specific, and well-aligned with the company's context.
+            Ensure questions are clear, specific, and well-aligned with the treatment in the context of treating patients with the complex illness mentioned above.
             """
             
             # Use LLM to generate sub-questions

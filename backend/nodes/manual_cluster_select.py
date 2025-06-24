@@ -6,8 +6,8 @@ from ..classes import ResearchState
 class ManualSelectionNode:
     async def manual_cluster_selection(self, state: ResearchState, websocket):
         clusters = state['document_clusters']
-        msg = "Multiple clusters were identified. Please review the options and select the correct cluster for the target company.\n\n"
-        msg += "Enter '0' if none of these clusters match the target company.\n"
+        msg = "Multiple clusters were identified. Please review the options and select the correct cluster for the target treatment.\n\n"
+        msg += "Enter '0' if none of these clusters match the target treatment.\n"
 
         if websocket:
             # Send cluster options to the frontend via WebSocket
@@ -25,7 +25,7 @@ class ManualSelectionNode:
                         return {"messages": [AIMessage(content=msg, is_manual_selection=True)], "chosen_cluster": selected_cluster_index}
                     elif 0 <= selected_cluster_index < len(clusters):
                         chosen_cluster = clusters[selected_cluster_index]
-                        msg = f"You selected cluster '{chosen_cluster.company_name}' as the correct cluster."
+                        msg = f"You selected cluster '{chosen_cluster.treatment_name}' as the correct cluster."
                         await websocket.send_text(msg)
                         return {"messages": [AIMessage(content=msg, is_manual_selection=True)], "chosen_cluster": selected_cluster_index}
                     else:

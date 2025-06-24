@@ -17,7 +17,7 @@ class EvaluationNode:
         If the grade is 1, includes critical gaps in the output.
         """
         prompt = f"""
-            You have created a report on '{state['company']}' based on the gathered information.
+            You have created a report on '{state['treatment_name']}' based on the gathered information.
             Grade the report on a scale of 1 to 3 based on completeness, accuracy, and depth of information:
             - **3** indicates a thorough and well-supported report with no major gaps.
             - **2** indicates adequate coverage, but could be improved.
@@ -40,7 +40,7 @@ class EvaluationNode:
             msg = f"❌ The report received a grade of 1. Critical gaps identified: {', '.join(evaluation.critical_gaps or ['None specified'])}"
             # Create new sub-questions for critical gaps
             new_sub_queries = [
-                TavilyQuery(query=f"Gather information on {gap} for {state['company']}", topic="general", days=30)
+                TavilyQuery(query=f"Gather information on {gap} for {state['treatment_name']}", topic="general", days=30)
                 for gap in evaluation.critical_gaps or []
             ]
             if 'sub_questions' in state:

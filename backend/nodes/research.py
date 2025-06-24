@@ -44,7 +44,7 @@ class ResearcherNode():
         """
         Conducts a Tavily Search and stores all documents in a unified 'documents' attribute.
         """
-        msg = "🚀 Conducting Tavily Search for the specified company...\n"
+        msg = "🚀 Conducting Tavily Search for the specified treatment...\n"
         state['documents'] = {}  # Initialize documents if not already present
 
         research_node = ResearcherNode()

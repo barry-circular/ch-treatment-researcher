@@ -8,8 +8,8 @@ from .classes import TavilySearchInput, DocumentCluster, ReportEvaluation
 
 # Define the research state
 class ResearchState(TypedDict):
-    company: str 
-    company_url: str
+    treatment_name: str 
+    source_url: str
     initial_documents: Dict[str, Dict[Union[str, int], Union[str, float]]]
     sub_questions: TavilySearchInput
     documents: Dict[str, Dict[Union[str, int], Union[str, float]]]
@@ -21,8 +21,8 @@ class ResearchState(TypedDict):
     messages: Annotated[list[AnyMessage], add_messages]
 
 class InputState(TypedDict):
-    company: str
-    company_url: str
+    treatment_name: str
+    source_url: str
 
 
 class OutputState(TypedDict):
