@@ -8,7 +8,7 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.11,<4"
 dependencies = [
-    "langgraph (==0.2.50)",
+    "langgraph (>=0.4.8,<0.5.0)",
     "tavily-python (==0.5.0)",
     "langchain (==0.3.7)",
     "langchain-anthropic (==0.3.0)",
