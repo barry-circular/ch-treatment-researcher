@@ -1,13 +1,16 @@
 from langchain_core.messages import AIMessage
-from tavily import AsyncTavilyClient
+from tavily import TavilyClient
 import os
+import dotenv
 
 from ..classes import ResearchState
+
+dotenv.load_dotenv()
 
 
 class InitialGroundingNode:
     def __init__(self) -> None:
-        self.tavily_client = AsyncTavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
+        self.tavily_client = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
 
     # Use Tavily Extract to get base content from provided company URL
     async def initial_search(self, state: ResearchState):

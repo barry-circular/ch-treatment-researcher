@@ -1,7 +1,7 @@
 from langchain_core.messages import SystemMessage, AIMessage
 from functools import partial
 from langgraph.graph import StateGraph
-from langgraph.checkpoint.memory import MemorySaver
+# from langgraph.checkpoint.memory import MemorySaver
 
 # Import research state class
 from backend.classes.research_state import ResearchState, InputState, OutputState
@@ -42,11 +42,11 @@ class Graph:
         
         # Initialize nodes as attributes
         self.initial_search_node = InitialGroundingNode() # done
-        self.sub_questions_node = SubQuestionsNode()
-        self.researcher_node = ResearcherNode()
-        self.cluster_node = ClusterNode()
-        self.manual_selection_node = ManualSelectionNode()
-        self.curate_node = EnrichDocsNode()
+        self.sub_questions_node = SubQuestionsNode() # done
+        self.researcher_node = ResearcherNode() # done
+        self.cluster_node = ClusterNode() # done
+        self.manual_selection_node = ManualSelectionNode() # done
+        self.curate_node = EnrichDocsNode() # done
         self.generate_node = GenerateNode()
         self.evaluation_node = EvaluationNode()
         self.publish_node = PublishNode()
@@ -79,12 +79,13 @@ class Graph:
         self.workflow.set_entry_point("initial_grounding")
         self.workflow.set_finish_point("publish")
 
-        self.memory = MemorySaver()
+        # self.memory = MemorySaver()
         self.websocket = websocket
 
     async def run(self, progress_callback=None):
         # Compile the graph
-        graph = self.workflow.compile(checkpointer=self.memory)
+        # graph = self.workflow.compile(checkpointer=self.memory)
+        graph = self.workflow.compile()
         thread = {"configurable": {"thread_id": "2"}}
 
         # Execute the graph asynchronously and send progress updates
@@ -108,7 +109,7 @@ class Graph:
 
         # Compile the workflow with checkpointer and interrupt configuration
         graph = self.workflow.compile(
-            checkpointer=self.memory
+            # checkpointer=self.memory
             # interrupt_before=["manual_cluster_selection"]
         )
         return graph
