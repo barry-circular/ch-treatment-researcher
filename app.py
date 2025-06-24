@@ -22,12 +22,12 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         # Receive initial data from the WebSocket client
         data = await websocket.receive_json()
-        company_name = data.get("companyName")
-        company_url = data.get("companyUrl")
+        treatment_name = data.get("companyName")
+        source_url = data.get("companyUrl")
         output_format = data.get("outputFormat", "pdf")
         
         # Initialize the Graph with company, URL, and output format
-        graph = Graph(company=company_name, url=company_url, output_format=output_format, websocket=websocket)
+        graph = Graph(treatment_name=treatment_name, source_url=source_url, output_format=output_format, websocket=websocket)
         
         # Progress callback to send messages back to the client
         async def progress_callback(message):

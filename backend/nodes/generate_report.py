@@ -27,34 +27,35 @@ class GenerateNode:
             return content.strip()
 
     async def generate_report(self, state: ResearchState):
-        report_title = f"Weekly Report on {state['company']}"
+        report_title = f"Weekly Report on {state['treatment_name']}"
         report_date = datetime.now().strftime('%B %d, %Y')
 
         prompt = f"""
-        You are an expert researcher tasked with writing a fact-based report on recent developments for the company **{state['company']}**. Write the report in Markdown format, but **do not include a title**. Each section must be written in well-structured paragraphs, not lists or bullet points.
+        You are an expert clinical researcher tasked with writing a fact-based report on recent developments for the treatment **{state['treatment_name']}**. Write the report in Markdown format, but **do not include a title**. Each section must be written in well-structured paragraphs, use lists or bullet points where appropriate.
         Ensure the report includes:
-        - **Inline citations** as Markdown hyperlinks directly in the main sections (e.g., Company X is an innovative leader in AI ([LinkedIn](https://linkedin.com))).
+        - **Inline citations** as Markdown hyperlinks directly in the main sections (e.g., Treatment X is an innovative approach to Long Covid ([LinkedIn](https://linkedin.com))).
         - A **Citations Section** at the end that lists all URLs used.
 
         ### Report Structure:
         1. **Executive Summary**:
-            - High-level overview of the company, its services, location, employee count, and achievements.
-            - Make sure to include the general information necessary to understand the company well including any notable achievements.
+            - High-level overview of the treatment, its mechanism of action, its intended benefits, its safety profile, and its efficacy.
+            - Make sure to include the general information necessary to understand the treatment well including any notable findings.
 
-        2. **Leadership and Vision**:
-            - Details on the CEO and key team members, their experience, and alignment with company goals.
-            - Any personnel changes and their strategic impact.
+        2. **Mechanism of Action**:
+            - Details on the mechanism of action of the treatment, how it works, what it does to the body, and how it is intended to benefit the patient.
+            - Any relevant findings or evidence to support the mechanism of action.
 
-        3. **Product and Service Overview**:
-            - Summary of current products/services, features, updates, and market fit.
-            - Include details from the company's website, tools, or new integrations.
+        3. **Efficacy**:
+            - Summary of current efficacy data, including any relevant medical studies or evidence to support the efficacy of the treatment.
+            - Include details from the source website, tools, or new integrations.
 
-        4. **Financial Performance**:
-            - For public companies: key metrics (e.g., revenue, market cap).
-            - For startups: funding rounds, investors, and milestones.
+        4. **Safety Profile**:
+            - Summary of the safety profile of the treatment, including any relevant adverse effects or side effects.
+            - Include details from the source website, tools, or new integrations.
 
         5. **Recent Developments**:
-            - New product enhancements, partnerships, competitive moves, or market entries.
+            - Recent developments in the treatment, including any relevant medical studies or evidence to support the efficacy of the treatment.
+            - Include details from the source website, tools, or new integrations.
 
         6. **Citations**:
             - Ensure every source cited in the report is listed in the text as Markdown hyperlinks.

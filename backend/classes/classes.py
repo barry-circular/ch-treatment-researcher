@@ -13,7 +13,7 @@ class TavilySearchInput(BaseModel):
 
 # Define the structure for clustering output
 class DocumentCluster(BaseModel):
-    company_name: str = Field(
+    treatment_name: str = Field(
         ...,
         description="The name or identifier of the company these documents belong to."
     )

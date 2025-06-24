@@ -26,7 +26,7 @@ from backend.utils.routing_helper import (
 )
 
 class Graph:
-    def __init__(self, company=None, url=None, output_format="pdf", websocket=None):
+    def __init__(self, treatment_name=None, source_url=None, output_format="pdf", websocket=None):
         # Initial setup of ResearchState and messages
         self.messages = [
             SystemMessage(content="You are an expert researcher ready to begin the information gathering process.")
@@ -34,14 +34,14 @@ class Graph:
 
         # Initialize ResearchState
         self.state = ResearchState(
-            company=company,
-            company_url=url,
+            treatment_name=treatment_name,
+            source_url=source_url,
             output_format=output_format,
             messages=self.messages
         )
         
         # Initialize nodes as attributes
-        self.initial_search_node = InitialGroundingNode()
+        self.initial_search_node = InitialGroundingNode() # done
         self.sub_questions_node = SubQuestionsNode()
         self.researcher_node = ResearcherNode()
         self.cluster_node = ClusterNode()
